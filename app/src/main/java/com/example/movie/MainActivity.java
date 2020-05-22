@@ -22,6 +22,11 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,13 +34,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener{
     LoginButton btn;
     CallbackManager cm;
     EditText email, pass;
     TextView txt1, txt2, txt3, txt;
     Button lgn;
     FirebaseAuth fAuth;
+
+    private SignInButton SignIn;
+    private GoogleApiClient googleApiClient;
+    private static final int REQ_CODE=900;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +129,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        SignIn=findViewById(R.id.bn_login);
+        ((View) SignIn).setOnClickListener(this);
+        GoogleSignInOptions signInOptions=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+
+        googleApiClient=new GoogleApiClient.Builder(this).enableAutoManage(this,this).addApi(Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
+
+
+
+
+
     }
+
+
+    private void signin1(){
+
+        Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+        startActivityForResult(intent,REQ_CODE);}
 
     private void recoverypassworddialog() {
         AlertDialog.Builder build= new AlertDialog.Builder(this);
@@ -162,6 +187,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         cm.onActivityResult(requestCode,resultCode,data);
+
+        if(requestCode==REQ_CODE){
+
+            Toast.makeText(this, "Signed In Succesfully", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this,"Sign In Failed",Toast.LENGTH_SHORT).show();
+        }
     }
 
+
+
+
+
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.bn_login) {
+            signin1();
+        }
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }
