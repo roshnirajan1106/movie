@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main3Activity">
+    tools:context=".Main3Activity"
+    android:background="#222021">
 
     <EditText
         android:id="@+id/editText3"
@@ -14,8 +15,10 @@
         android:ems="10"
         android:fontFamily="@font/amethysta"
         android:hint="Enter your email"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
         android:inputType="textPersonName"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -31,6 +34,8 @@
         android:ems="10"
         android:fontFamily="@font/amethysta"
         android:hint="Enter password"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
         android:inputType="textPersonName"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +44,7 @@
         app:layout_constraintStart_toStartOf="@+id/editText3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.548" />
+
 
     <Button
         android:id="@+id/button"
@@ -53,20 +59,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintVertical_bias="0.725" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="342dp"
+        android:layout_height="115dp"
+        android:fontFamily="@font/amethysta"
+        android:text="MovieMaster"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466" />
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="201dp"
-        android:layout_height="146dp"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/amethysta"
+        android:text="Already have an Account?  Login"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.027"
-        app:srcCompat="@drawable/mm" />
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.314" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
