@@ -191,6 +191,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(requestCode==REQ_CODE){
 
             Toast.makeText(this, "Signed In Succesfully", Toast.LENGTH_SHORT).show();
+            Intent i =new Intent(getApplicationContext(), Dashboard.class);
+            startActivity(i);
+
         }
         else{
             Toast.makeText(this,"Sign In Failed",Toast.LENGTH_SHORT).show();
